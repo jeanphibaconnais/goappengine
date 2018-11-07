@@ -1,7 +1,16 @@
 package goappengine
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+	"google.golang.org/appengine"
+)
 
 func main() {
-	fmt.Println("Hello world")
+	http.HandleFunc("/", handle)
+	appengine.Main()
+}
+
+func handle(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Hello, world!")
 }
